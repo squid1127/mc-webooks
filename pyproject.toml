@@ -2,7 +2,7 @@
 name = "mc-webhooks"
 version = "0.1.0"
 description = "Async webhook listener using FastAPI and Redis"
-authors = [{name = "squid1127", email = "him@squid1127.com"}]
+authors = [{name = "squid1127", email = "120748767+squid1127@users.noreply.github.com"}]
 readme = "README.md"
 
 requires-python = ">=3.10,<4.0"
