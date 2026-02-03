@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     
     # Event Processer settings
     player_private_cmds: str = '["/w", "/msg", "/tell"]' # JSON array of commands to treat as private
-    player_private_chat_prefixes: str = '["->"]' # JSON array of chat prefixes to treat as private
+    player_private_chat_prefixes: str = '[]' # JSON array of chat prefixes to treat as private
 
     class Config:
         """Pydantic config."""
