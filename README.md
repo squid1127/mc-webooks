@@ -2,6 +2,10 @@
 
 A simple, modular, async webhook listener for Minecraft server events using [this plugin](https://modrinth.com/plugin/minecraftserverapi/), built with FastAPI and Typer. It receives event data from a Minecraft server, processes it, and sends notifications to Discord.
 
+## Archived
+
+After less then a day of existence this project has been archived due to unnecessary complexity it introduced. It will probably be superceded by a much more functional solution in the future.
+
 ## Overview
 
 This project provides a webhook server that listens for events from a Minecraft server (e.g., player chat, commands). It's designed to be extensible, allowing you to add new event handlers easily.
