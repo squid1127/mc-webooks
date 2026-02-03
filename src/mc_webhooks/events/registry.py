@@ -8,7 +8,7 @@ class Registry:
     _registry: Dict[str, Type] = {}
 
     @classmethod
-    def add(cls, event_type, processor_cls: Type) -> None:
+    def add(cls, processor_cls: Type) -> None:
         """
         Add an event processor to the registry.
 
@@ -16,7 +16,12 @@ class Registry:
             event_type: The type of event the processor handles.
             processor_cls: The processor class to register.
         """
-        cls._registry[event_type] = processor_cls
+        if not hasattr(processor_cls, "event_types"):
+            raise ValueError("Processor class must have 'event_types' attribute.")
+        for event_type in processor_cls.event_types:
+            if event_type in cls._registry:
+                raise ValueError(f"Processor for event type '{event_type}' is already registered.")
+            cls._registry[event_type] = processor_cls
 
     @classmethod
     def get(cls, event_type: str) -> Type:

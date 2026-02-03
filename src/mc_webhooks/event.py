@@ -20,17 +20,22 @@ class Event:
     received_at: datetime = field(default_factory=datetime.utcnow)
     
 class EventProcessor(ABC):
-    """Processes incoming events."""
+    """Abstract base class for event processors.
     
-    def __init__(self, event_type: str, context: "AppContext"):
+    Subclasses must implement:
+        - process_event(event: Event) -> None - Process the given event (async).
+        - event_types() -> list[str] - Return list of event types this processor can handle.
+        - __post_init__() -> None - Post-initialization hook. (Optional)
+    
+    """
+    
+    def __init__(self, context: "AppContext"):
         """
         Initialize the event processor.
         
         Args:
-            event_type: The type of event this processor handles.
             context: Application context providing access to all services (redis, notifier, etc).
         """
-        self._event_type = event_type
         self.context = context
         self.__post_init__()
 
@@ -64,7 +69,12 @@ class EventProcessor(ABC):
         """
         pass
     
-    @property
-    def event_type(self) -> str:
-        """The type of event this processor handles."""
-        return self._event_type
+    @abstractmethod
+    def event_types(self) -> list[str]:
+        """
+        Return the list of event types this processor can handle.
+        
+        Returns:
+            List of event type strings.
+        """
+        pass

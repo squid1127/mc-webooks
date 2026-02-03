@@ -18,7 +18,7 @@ class EventHandler:
         self.event_processors: dict[str, EventProcessor] = {}
         
         for event_type, processor_cls in Registry.all().items():
-            self.event_processors[event_type] = processor_cls(event_type, context)
+            self.event_processors[event_type] = processor_cls(context)
         
         
     async def handle_event(self, event_type: str, payload: dict) -> None:
