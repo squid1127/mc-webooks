@@ -28,8 +28,6 @@ class PlayerCmdEventProcessor(EventProcessor):
         player = event.payload.get("player", "Unknown")
         command = event.payload.get("command", "[Empty command]")
         
-        
-        
         embed = Embed(
             description=f"`{self.filter_private_command(command)}`",
             color=Color.yellow(),
