@@ -7,6 +7,8 @@ from ..event import EventProcessor, Event
 class PlayerCmdEventProcessor(EventProcessor):
     """Processes player command events."""
     
+    event_types = ["player_command"]
+    
     def __post_init__(self):
         self.private_commands: list[str] = json.loads(self.context.settings.player_private_cmds)
         
@@ -39,4 +41,4 @@ class PlayerCmdEventProcessor(EventProcessor):
         self.context.logger.info(f"Processed player command event from {player}")
         
 # Register the event processor
-Registry.add("player_command", PlayerCmdEventProcessor)
+Registry.add(PlayerCmdEventProcessor)

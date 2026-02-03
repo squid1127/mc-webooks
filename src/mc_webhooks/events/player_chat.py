@@ -8,6 +8,8 @@ from ..event import EventProcessor, Event
 class PlayerChatEventProcessor(EventProcessor):
     """Processes player chat events."""
     
+    event_types = ["player_chat"]
+    
     def __post_init__(self):
         # Load private commands from settings
         self.private_prefixes: list[str] = json.loads(self.context.settings.player_private_chat_prefixes)
@@ -40,4 +42,4 @@ class PlayerChatEventProcessor(EventProcessor):
         self.context.logger.info(f"Processed player chat event from {player}")
         
 # Register the event processor
-Registry.add("player_chat", PlayerChatEventProcessor)
+Registry.add(PlayerChatEventProcessor)
